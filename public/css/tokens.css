@@ -14,10 +14,10 @@
 
 :root {
     /* Paleta de colores*/
-    --color-primario: #40534C;
+    --color-primario: #1A3636;
     --color-secundario: #808D7C;
-    --color-acento: #ABFFE4;
-    --color-complementario-fuerte: #1A3636;
+    --color-acento: #8bffee;
+    --color-complementario-fuerte: #40534C;
     --color-complementario-claro: #FFFFFF;
     /*Tipografías*/
     --fuente-titulos: "Inter", sans-serif;

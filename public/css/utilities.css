@@ -1,9 +1,9 @@
 /* Fondos */
-.bg-primario { background-color: var(--color-primario) !important; }
-.bg-secundario { background-color: var(--color-secundario) !important; }
-.bg-acento { background-color: var(--color-acento) !important; }
-.bg-complementario-fuerte { background-color: var(--color-complementario-fuerte) !important; }
-.bg-complementario-claro { background-color: var(--color-complementario-claro) !important; }
+.bg-primario { background-color: var(--color-primario) !important; --bs-bg-opacity: 1; }
+.bg-secundario { background-color: var(--color-secundario) !important; --bs-bg-opacity: 1; }
+.bg-acento { background-color: var(--color-acento) !important; --bs-bg-opacity: 1;}
+.bg-complementario-fuerte { background-color: var(--color-complementario-fuerte) !important; --bs-bg-opacity: 1; }
+.bg-complementario-claro { background-color: var(--color-complementario-claro) !important; --bs-bg-opacity: 1; }
 
 /* Textos */
 .text-primario { color: var(--color-primario) !important; }
