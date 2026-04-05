@@ -1,0 +1,28 @@
+/* Fondos */
+.bg-primario { background-color: var(--color-primario) !important; }
+.bg-secundario { background-color: var(--color-secundario) !important; }
+.bg-acento { background-color: var(--color-acento) !important; }
+.bg-complementario-fuerte { background-color: var(--color-complementario-fuerte) !important; }
+.bg-complementario-claro { background-color: var(--color-complementario-claro) !important; }
+
+/* Textos */
+.text-primario { color: var(--color-primario) !important; }
+.text-secundario { color: var(--color-secundario) !important; }
+.text-acento { color: var(--color-acento) !important; }
+.text-fuerte { color: var(--color-complementario-fuerte) !important; }
+.text-claro { color: var(--color-complementario-claro) !important; }
+
+/* Bordes */
+.border-primario { border-color: var(--color-primario) !important; }
+.border-secundario { border-color: var(--color-secundario) !important; }
+.border-acento { border-color: var(--color-acento) !important; }
+.border-fuerte { border-color: var(--color-complementario-fuerte) !important; }
+.border-claro { border-color: var(--color-complementario-claro) !important; }
+
+/* Hovers */
+.hover-bg-primario:hover { background-color: var(--color-primario) !important; }
+.hover-bg-secundario:hover { background-color: var(--color-secundario) !important; }
+.hover-bg-acento:hover { background-color: var(--color-acento) !important; }
+.hover-text-primario:hover { color: var(--color-primario) !important; }
+.hover-text-secundario:hover { color: var(--color-secundario) !important; }
+.hover-text-acento:hover { color: var(--color-acento) !important; }

@@ -1,0 +1,25 @@
+@font-face {
+    font-family: "Inter";
+    src: url("./fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("./fonts/Inter/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+:root {
+    /* Paleta de colores*/
+    --color-primario: #40534C;
+    --color-secundario: #808D7C;
+    --color-acento: #ABFFE4;
+    --color-complementario-fuerte: #1A3636;
+    --color-complementario-claro: #FFFFFF;
+    /*Tipografías*/
+    --fuente-titulos: "Inter", sans-serif;
+    --fuente-textos: Arial, Helvetica, sans-serif;
+}
