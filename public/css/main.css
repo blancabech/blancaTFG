@@ -1,7 +1,129 @@
-body {
-    font-family: var(--fuente-texto);
+body, nav li {
+    font-family: var(--fuente-textos);
+    font-size:20px;
 }
-
+nav {
+    padding: 5px 100px;
+}
+.nav-link {
+    white-space: nowrap;
+}
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--fuente-titulos);
+}
+#LogoATMST {
+    height: 28px;
+    width: auto;
+}
+.portada {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* ajusta la altura */
+    overflow: hidden;
+}
+
+.portada-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* recorta sin deformar */
+    filter: brightness(70%); /* oscurece un poco para que el texto destaque */
+}
+
+.portada-texto {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.portada-texto h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.portada-texto p {
+    font-size: 1.3rem;
+}
+
+.contenido {
+    margin-left: 80px;
+    margin-right: 80px;
+}
+.contacto-texto {
+    width: 60%;
+    max-width: 50rem;
+}
+.contacto-card {
+    width: 35%;
+}
+
+
+@media (max-width: 1130px) {
+  .sContacto {
+    margin: 0px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center;
+  }
+  .contacto-texto{
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .contacto-card {
+    width:auto;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+
+
+
+
+/* Tablet */
+@media (max-width: 800px) {
+    .contenido {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .contacto-texto {
+        width: 100%;
+    }
+    .contacto-card {
+        width: 100%;
+    }
+}
+/* Movil */
+@media (max-width: 500px) {
+    .contenido {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .contenido p {
+        font-size: 1rem;
+    }
+    .navbar-brand {
+        margin-left: 0 !important;
+        margin-bottom: 5px;
+    }
+    #LogoATMST {
+        height: 23px;
+        width: auto;
+    }
+    .portada-texto {
+        top: 55%;
+    }
+    .portada-texto h1 {
+        font-size: 2rem;
+        min-width: 100%;
+    }
+    .portada-texto p {
+        font-size: 1.1rem;
+    }
+    
 }
