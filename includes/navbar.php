@@ -11,8 +11,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle <?= ($title === 'Servicios') ? 'active text-acento' : '' ?>" href="/blancaTFG/servicios.php" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
                     <ul class="dropdown-menu"> 
-                        <li><a class="dropdown-item" href="#">ATM y dolor orofacial</a></li>
-                        <li><a class="dropdown-item" href="#">Bruxismo</a></li>
+                        <li><a class="dropdown-item" href="/blancaTFG/servicios.php">ATM y dolor orofacial</a></li>
+                        <li><a class="dropdown-item" href="/blancaTFG/servicios.php#Bruxismo">Bruxismo</a></li>
                     </ul> 
                 </li>
                 <li class="nav-item">

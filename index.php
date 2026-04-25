@@ -4,6 +4,7 @@ $title="ATM Sin Tension";
 include "./includes/header.php";
 include "./includes/navbar.php";
 ?>
+<body>
 <section class="portada">
     <img src="/blancaTFG/public/media/chica_beige.jpg" alt="Portada" class="portada-img">
 
@@ -21,22 +22,22 @@ include "./includes/navbar.php";
 
     <h2 class="text-center mt-3 mb-4 text-primario">Servicios</h2>
 <section class="d-flex justify-content-center gap-4 flex-wrap">
-    <div class="card" style="width: 26rem;">
+    <div class="card shadow" style="width: 26rem;">
     <img src="./public/media/chico_dolor.png" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">ATM y dolor orofacial</h5>
         <p class="card-text">Dolor al masticar, chasquidos, bloqueos, tensión mandibular o molestias en la zona de la sien.
-        Trabajamos para reducir el dolor, mejorar la función y devolver equilibrio a la articulación.</p>
-        <a href="#" class="btn bg-complementario-fuerte text-claro">Más información</a>
+        Trabajamos enfocados en la reducción del dolor, mejorar el funcionamiento y devolver el equilibrio a la articulación.</p>
+        <a href="/blancaTFG/servicios.php" class="btn bg-complementario-fuerte text-claro">Más información</a>
     </div>
     </div>
-    <div class="card" style="width: 26rem;">
+    <div class="card shadow" style="width: 26rem;">
     <img src="./public/media/chica_apretando.png" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">Bruxismo</h5>
         <p class="card-text">Apretar o rechinar los dientes puede generar dolor mandibular, cervical y cefaleas.
         Abordamos tanto los síntomas como los factores que los desencadenan, combinando técnicas manuales y educación.</p>
-        <a href="#" class="btn bg-complementario-fuerte text-claro">Más información</a>
+        <a href="/blancaTFG/servicios.php#Bruxismo" class="btn bg-complementario-fuerte text-claro">Más información</a>
     </div>
     </div>
 </section>
@@ -53,8 +54,8 @@ para que no solo mejores en consulta, sino que también aprendas a gestionar tu 
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 <h2 class="text-center mt-3 mb-4 text-primario">Contacto</h2>
-<section class="d-flex justify-content-center gap-4 flex-wrap align-items-start sContacto">
-    <div class="contacto-texto">
+<section class="d-flex justify-content-center gap-4 flex-wrap align-items-start contenedorInfo">
+    <div class="elemeto1">
 <p class="text-fuerte ms-4 me-4">¿Tienes dudas o necesitas más información? El centro se encuentra en Getxo y atendemos con cita previa.
 Llámanos o escríbenos y te ayudaremos encantados. </p>
 <h3 class="text-primario ms-4 me-4">Tu mandíbula merece estar en calma. En ATM Sin Tensión te acompañamos a conseguirlo.</h3>
@@ -66,6 +67,7 @@ Llámanos o escríbenos y te ayudaremos encantados. </p>
     <li class="text-center list-group-item"><i class="bi bi-geo-alt-fill"></i> Calle Foru Kalea 12, Getxo</li>
   </ul>
 </div>
+</section>
 
 </div>
 </body>
