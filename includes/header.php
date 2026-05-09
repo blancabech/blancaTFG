@@ -16,5 +16,10 @@
             <link rel="stylesheet" href="<?= $css ?>">
         <?php endforeach;
     endif; ?>
-    
+    <!-- JS por página -->
+    <?php if (!empty($links_js)):
+        foreach ($links_js as $js): ?>
+            <script src="<?= $js ?>"></script>
+        <?php endforeach;
+    endif; ?>
 </head>

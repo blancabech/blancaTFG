@@ -23,8 +23,10 @@
                 </li>
             </ul>
             <form class="d-flex ms-auto me-4">
-                <button class="btn btn-sm btn-outline-secondary me-2 bg-primario text-acento border-acento" type="button">Iniciar sesión</button>
-                <button class="btn btn-outline-success bg-acento text-primario border-primario" type="button">Registrarse</button>
+                <a href="/blancaTFG/iniciarSesion.php" class="btn btn-sm btn-outline-secondary me-2 bg-primario text-acento border-acento py-2">Iniciar sesión</a>
+
+                <a href="/blancaTFG/registrarse.php" class="btn btn-outline-success bg-acento text-primario border-acento py-2">Registrarse</a>
+
             </form>
         </div>
     </div>
