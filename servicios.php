@@ -6,6 +6,9 @@ include "./includes/navbar.php";
 ?>
 <body>
 <div class="contenido">
+
+<h1 class="text-center text-primario mt-4 mb-4">Servicios</h1>
+
 <p class="text-center text-fuerte ms-4 me-4 mt-4 mb-4">En ATM Sin Tensión tratamos las principales disfunciones de la 
     articulación temporomandibular mediante un enfoque personalizado y basado en evidencia. Cada caso es único, por eso 
     realizamos una valoración completa y adaptamos el tratamiento a tus síntomas, hábitos y necesidades. A continuación 
@@ -38,7 +41,7 @@ include "./includes/navbar.php";
 </section>
 <h2 id="Bruxismo" class="text-center mt-4 mb-4 text-primario">Bruxismo</h2>
 <section class="d-flex justify-content-center gap-4 flex-wrap align-items-start contenedorInfo">
-    <div class="ms-auto ms-4 me-4 elemento2">
+    <div class="me-auto ms-4 me-4 elemento2">
         <img src="./public/media/chica_gris.jpg" alt="chica tumbada y fisio trabajando su hombro">
     </div>
         <div class="elemeto1">
