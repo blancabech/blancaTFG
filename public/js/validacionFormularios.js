@@ -78,3 +78,32 @@ function validarCampo(input) {
         }
     }
 }
+
+function bloquearSubmitSiErrores(formId) {
+    const form = document.getElementById(formId);
+
+    form.addEventListener("submit", function(e) {
+        let hayErrores = false;
+        let hayVacios = false;
+
+        document.querySelectorAll(`#${formId} .texto-error`).forEach(error => {
+            if (!error.classList.contains("d-none")) {
+                hayErrores = true;
+            }
+        });
+        document.querySelectorAll(`#${formId} [required]`).forEach(input => {
+            if (input.value.trim() === "") {
+                hayVacios = true;
+            }
+        });
+        if (hayVacios) {
+            e.preventDefault();
+            mostrarToast("Hay campos obligatorios sin rellenar");
+            return;
+        }
+        if (hayErrores) {
+            e.preventDefault();
+            mostrarToast("Corrige los errores antes de enviar el formulario");
+        }
+    });
+}

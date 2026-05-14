@@ -1,36 +1,63 @@
 <?php
 $title="Registrarse";
 $links_css=["https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker.min.css"];
-$links_js=["/blancaTFG/public/js/validacionFormularios.js"];
+$links_js=[
+    "/blancaTFG/public/js/toast.js",
+    "/blancaTFG/public/js/validacionFormularios.js"
+];
+
 include "./includes/header.php";
 include "./includes/navbar.php";
+
+session_start();
+$toast = null;
+if (isset($_SESSION["toast_error"])) {
+    $toast = $_SESSION["toast_error"];
+    unset($_SESSION["toast_error"]);
+}
 ?>
+
 <body>
 <div class="contenido">
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toast" class="toast text-bg-danger" role="alert">
+        <div class="toast-body"></div>
+    </div>
+</div>
+
+<?php if ($toast): ?>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    mostrarToast("<?= $toast ?>");
+});
+</script>
+<?php endif; ?>
+
     <h1 class="text-center text-primario mt-4 mb-4">Registrarse</h1>
     <div class="card shadow px-4 py-4" style="width: 100%;">
-        <form id="form-registro" action="registro.php" method="POST" novalidate>
+    <form id="form-registro" action="includes/procesarFormulario.php" method="POST" novalidate>
+        <input type="hidden" name="formulario" value="registrarse">
             <div class="d-flex flex-column flex-md-row gap-4">
                 <!-- Columna 1-->
                 <div class="d-flex flex-column flex-fill gap-3">
                     <div class="mb-3">
                         <label class="text-fuerte form-label">Nombre</label>
-                        <input type="text" class="form-control validar-nombres" name="nombre">
+                        <input type="text" class="form-control validar-nombres" name="nombre" required>
                         <small class="texto-error text-danger d-none"></small>
                     </div>
                     <div class="mb-3">
                         <label class="text-fuerte form-label">Primer apellido</label>
-                        <input type="text" class="form-control validar-nombres" name="primer_apellido">
+                        <input type="text" class="form-control validar-nombres" name="primer_apellido" required>
                         <small class="texto-error text-danger d-none"></small>
                     </div>
                     <div class="mb-3">
                         <label class="text-fuerte form-label">Segundo apellido</label>
-                        <input type="text" class="form-control validar-nombres" name="segundo_apellido">
+                        <input type="text" class="form-control validar-nombres" name="segundo_apellido" required>
                         <small class="texto-error text-danger d-none"></small>
                     </div>
                     <div class="mb-3">
                         <label class="text-fuerte form-label">Fecha de nacimiento</label>
-                        <input type="text" class="form-control validar-fecha" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="aaaa-mm-dd">
+                        <input type="text" class="form-control validar-fecha" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="aaaa-mm-dd" required>
                         <small class="texto-error text-danger d-none"></small>
                     </div>
                 </div>
@@ -38,22 +65,22 @@ include "./includes/navbar.php";
                 <div class="d-flex flex-column flex-fill gap-3">
                     <div class="mb-3">
                         <label class="text-fuerte form-label">Nombre de usuario</label>
-                        <input type="text" class="form-control validar-usuario" name="username">
+                        <input type="text" class="form-control validar-usuario" name="username" required>
                         <small class="texto-error text-danger d-none"></small>
                     </div>
                     <div class="mb-3">
                         <label class="text-fuerte form-label">Correo electrónico</label>
-                        <input type="email" class="form-control validar-correo" name="email" placeholder="juangomez@gmail.com">
+                        <input type="email" class="form-control validar-correo" name="email" placeholder="juangomez@gmail.com" required>
                         <small class="texto-error text-danger d-none"></small>
                     </div>
                     <div class="mb-3">
                         <label class="text-fuerte form-label">Teléfono</label>
-                        <input type="text" class="form-control validar-telefono" name="telefono" placeholder="687543456">
+                        <input type="text" class="form-control validar-telefono" name="telefono" placeholder="687543456" required>
                         <small class="texto-error text-danger d-none"></small>
                     </div>
                     <div class="mb-3">
                         <label class="text-fuerte form-label">Contraseña</label>
-                        <input type="password" class="form-control validar-contrasenia" name="password">
+                        <input type="password" class="form-control validar-contrasenia" name="password" required>
                         <small class="texto-error text-danger d-none"></small>
                     </div>
                 </div>
@@ -97,6 +124,8 @@ $(function() {
         validarCampo(this);
     });
 });
+
+bloquearSubmitSiErrores("form-registro");
 </script>
 
 </body>
