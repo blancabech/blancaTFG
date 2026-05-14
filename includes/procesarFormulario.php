@@ -11,9 +11,10 @@ try {
         case "registrarse":
             procesarRegistro();
             break;
-/*      case "iniciarSesion":
+        case "iniciarSesion":
             procesarIniciarSesion();
             break;
+/*      
         y el de coger cita
 */
     }
@@ -61,5 +62,24 @@ function lanzarToast($mensaje, $redireccion) {
     session_start();
     $_SESSION["toast_error"] = $mensaje;
     header("Location: $redireccion");
+    exit;
+}
+
+function procesarIniciarSesion() {
+    global $bd;
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $usuario = validar_login($username, $password);
+
+    if (!$usuario) {
+        lanzarToast("Usuario o contraseña incorrectos", "../iniciarSesion.php");
+    }
+
+    session_start();
+    $_SESSION["idUsuario"] = $usuario["id_usuario"];
+    $_SESSION["username"] = $usuario["username"];
+    header("Location: ../index.php");
     exit;
 }

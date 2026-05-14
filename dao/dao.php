@@ -38,3 +38,19 @@ function existe_username($username) {
 
     return $fila["numeroUsernames"] > 0;
 }
+
+function validar_login($username, $password) {
+    global $bd;
+
+    $sql = "SELECT * FROM usuario WHERE username = '$username' LIMIT 1";
+    $resultado = mysqli_query($bd, $sql);
+    $usuario = mysqli_fetch_assoc($resultado);
+
+    if (!$usuario) return false;
+
+    if (password_verify($password, $usuario["password"])) {
+        return $usuario;
+    }
+
+    return false;
+}

@@ -95,6 +95,11 @@ input:focus {
     filter: brightness(80%);
     z-index: 1;
 }
+.card-login {
+    width: 80%;
+    max-width: 400px;
+}
+
 
 @media (max-width: 1130px) {
   .contenedorInfo {
@@ -172,5 +177,8 @@ input:focus {
     .portada-texto p {
         font-size: 1.1rem;
     }
-    
+    .card {
+        width: 100% !important;
+        max-width: none !important;
+    }  
 }
