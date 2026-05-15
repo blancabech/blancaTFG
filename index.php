@@ -1,9 +1,14 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $title="ATM Sin Tension";
 //$links_css=["/ejemplo/ejemplo.css",""];
 include "./includes/header.php";
 include "./includes/navbar.php";
 ?>
+
 <body>
 <section class="portada">
     <img src="/blancaTFG/public/media/chica_beige.jpg" alt="Portada" class="portada-img">

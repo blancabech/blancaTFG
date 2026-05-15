@@ -1,10 +1,13 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $title="Iniciar Sesión";
 $links_js=["/blancaTFG/public/js/toast.js"];
 include "./includes/header.php";
 include "./includes/navbar.php";
 
-session_start();
 $toast = $_SESSION["toast_error"] ?? null;
 unset($_SESSION["toast_error"]);
 ?>

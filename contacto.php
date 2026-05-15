@@ -1,9 +1,14 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $title="Contacto";
 //$links_css=["/ejemplo/ejemplo.css",""];
 include "./includes/header.php";
 include "./includes/navbar.php";
 ?>
+
 <body>
 <div class="contenido">
     <h1 class="text-center text-primario mt-4 mb-4">Contacto</h1>

@@ -1,4 +1,8 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $title="Registrarse";
 $links_css=["https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker.min.css"];
 $links_js=[
@@ -9,7 +13,6 @@ $links_js=[
 include "./includes/header.php";
 include "./includes/navbar.php";
 
-session_start();
 $toast = null;
 if (isset($_SESSION["toast_error"])) {
     $toast = $_SESSION["toast_error"];

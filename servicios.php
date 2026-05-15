@@ -1,9 +1,14 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $title="Servicios";
 //$links_css=["/ejemplo/ejemplo.css",""];
 include "./includes/header.php";
 include "./includes/navbar.php";
 ?>
+
 <body>
 <div class="contenido">
 
