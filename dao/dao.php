@@ -54,3 +54,9 @@ function validar_login($username, $password) {
 
     return false;
 }
+
+function eliminar_usuario($id) {
+    global $bd;
+    $sql = "DELETE FROM usuario WHERE id_usuario = $id";
+    return mysqli_query($bd, $sql);
+}
