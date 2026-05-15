@@ -33,8 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center p-0">
             <h2 class="text-center text-primario mt-4 mb-4">Iniciar sesión</h2>    
             <div class="card shadow card-login p-4">
-                <form action="includes/procesarFormulario.php" method="POST">
-                    <input type="hidden" name="formulario" value="iniciarSesion">
+                <form action="/blancaTFG/auth/login.php" method="POST">
                     <div class="mb-3">
                         <label class="text-fuerte form-label">Nombre de usuario</label>
                         <input type="text" class="form-control" name="username" required>

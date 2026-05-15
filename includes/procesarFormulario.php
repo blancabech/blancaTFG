@@ -1,5 +1,6 @@
 <?php
 require_once "../dao/dao.php";
+require_once "../includes/utils.php";
 
 try {
     if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -10,9 +11,6 @@ try {
     switch ($form) {
         case "registrarse":
             procesarRegistro();
-            break;
-        case "iniciarSesion":
-            procesarIniciarSesion();
             break;
 /*      
         y el de coger cita
@@ -51,35 +49,8 @@ function procesarRegistro() {
     $id = mysqli_insert_id($bd);
 
     session_start();
-    $_SESSION["idUsuario"] = $id;
+    $_SESSION["id_usuario"] = $id;
     $_SESSION["username"] = $username;
-    header("Location: ../index.php");
-    exit;
-}
-
-
-function lanzarToast($mensaje, $redireccion) {
-    session_start();
-    $_SESSION["toast_error"] = $mensaje;
-    header("Location: $redireccion");
-    exit;
-}
-
-function procesarIniciarSesion() {
-    global $bd;
-
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    $usuario = validar_login($username, $password);
-
-    if (!$usuario) {
-        lanzarToast("Usuario o contraseña incorrectos", "../iniciarSesion.php");
-    }
-
-    session_start();
-    $_SESSION["idUsuario"] = $usuario["id_usuario"];
-    $_SESSION["username"] = $usuario["username"];
     header("Location: ../index.php");
     exit;
 }
