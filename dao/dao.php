@@ -60,3 +60,74 @@ function eliminar_usuario($id) {
     $sql = "DELETE FROM usuario WHERE id_usuario = $id";
     return mysqli_query($bd, $sql);
 }
+
+function hora_disponible($fecha, $hora, $duracion) {
+    global $bd;
+
+    $sql = "SELECT hora, duracion FROM cita 
+            WHERE fecha = '$fecha' AND estado = 'reservada'";
+    $resultado = mysqli_query($bd, $sql);
+
+    $inicioCita = strtotime("$fecha $hora");
+    $finCita = $inicioCita + ($duracion * 60);
+
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+        $inicioOcupada = strtotime($fecha . " " . $fila["hora"]);
+        $finOcupada = $inicioOcupada + ($fila["duracion"] * 60);
+
+        if ($inicioCita < $finOcupada && $finCita > $inicioOcupada) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function insertar_cita($id_usuario, $fecha, $hora, $duracion, $tipo, $notas) {
+    global $bd;
+
+    $sql = "INSERT INTO cita (id_usuario, fecha, hora, tipo_cita, duracion, notas_cliente)
+            VALUES ('$id_usuario', '$fecha', '$hora', '$tipo', '$duracion', '$notas')";
+
+    return mysqli_query($bd, $sql);
+}
+
+function obtener_proximas_citas_usuario($id_usuario) {
+    global $bd;
+
+    $hoy = date("Y-m-d");
+    $ahora = date("H:i");
+
+    $sql = "SELECT id_cita, fecha, hora, duracion FROM cita
+            WHERE id_usuario = $id_usuario AND estado = 'reservada' AND (fecha > '$hoy' OR (fecha = '$hoy' AND hora >= '$ahora'))
+            ORDER BY fecha ASC, hora ASC";
+
+    $res = mysqli_query($bd, $sql);
+
+    $citas = [];
+    while ($fila = mysqli_fetch_assoc($res)) {
+        $citas[] = $fila;
+    }
+
+    return $citas;
+}
+
+function actualizar_cita($id_cita, $fecha, $hora, $duracion) {
+    global $bd;
+
+    $sql = "UPDATE cita 
+            SET fecha = '$fecha', hora = '$hora', duracion = $duracion
+            WHERE id_cita = $id_cita";
+
+    return mysqli_query($bd, $sql);
+}
+
+function cancelar_cita($id_cita) {
+    global $bd;
+
+    $sql = "UPDATE cita 
+            SET estado = 'cancelada'
+            WHERE id_cita = $id_cita";
+
+    return mysqli_query($bd, $sql);
+}

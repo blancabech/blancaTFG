@@ -1,4 +1,5 @@
 function validarCampo(input) {
+    if (input.type === "radio") return;
     const valor = input.value.trim();
     const error = input.nextElementSibling;
 
@@ -24,7 +25,7 @@ function validarCampo(input) {
         }
     }
 
-    if (input.classList.contains("validar-fecha")) {
+    if (input.classList.contains("validar-nacimiento")) {
         const patronFecha = /^(\d{4})-(\d{2})-(\d{2})$/;
         if (!patronFecha.test(valor)) {
             error.innerHTML = "Formato inválido.<br>Correcto: (aaaa-mm-dd)";
@@ -77,7 +78,73 @@ function validarCampo(input) {
             error.classList.remove("d-none");
         }
     }
+
+    if (input.classList.contains("validar-fecha-cita")) {
+        const fecha = new Date(valor);
+
+        const dia = fecha.getDay(); // 0 domingo, 6 sábado
+        if (dia === 0 || dia === 6) {
+        error.textContent = "No se puede reservar en fin de semana";
+        error.classList.remove("d-none");
+        return;
+    }
+        
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+        if (fecha < hoy) {
+            error.textContent = "La fecha debe ser futura";
+            error.classList.remove("d-none");
+        }
+    }
+
+    if (input.classList.contains("validar-hora-cita")) {
+        const fechaInput = document.querySelector("input[name='fecha']");
+        if (fechaInput && fechaInput.value !== "") {
+            const fechaSeleccionada = new Date(fechaInput.value);
+            const hoy = new Date();
+
+            if (fechaSeleccionada.toDateString() === hoy.toDateString()) {
+                const [h, m] = valor.split(":");
+                const horaSeleccionada = new Date();
+                horaSeleccionada.setHours(h, m, 0, 0);
+
+                if (horaSeleccionada < hoy) {
+                    error.textContent = "La hora debe ser futura";
+                    error.classList.remove("d-none");
+                }
+            }
+        }
+        const [h, m] = valor.split(":").map(Number);
+
+        if (h < 8 || h > 14) {
+            error.innerHTML = "Primera cita a las 8:00.<br>Última a las 14:00";
+            error.classList.remove("d-none");
+            return;
+        }
+
+        if (m !== 0 && m !== 30) {
+            error.textContent = "La cita debe ser en punto o y media";
+            error.classList.remove("d-none");
+            return;
+        }
+
+    }
+
+    if (input.classList.contains("validar-notas")) {
+        if (valor.length > 500) {
+            error.textContent = "Máximo 500 caracteres";
+            error.classList.remove("d-none");
+        }
+    }
 }
+
+
+
+
+
+
+
+
 
 function bloquearSubmitSiErrores(formId) {
     const form = document.getElementById(formId);
@@ -98,12 +165,13 @@ function bloquearSubmitSiErrores(formId) {
         });
         if (hayVacios) {
             e.preventDefault();
-            mostrarToast("Hay campos obligatorios sin rellenar");
+            mostrarToast("Hay campos obligatorios sin rellenar", "danger");
             return;
         }
         if (hayErrores) {
             e.preventDefault();
-            mostrarToast("Corrige los errores antes de enviar el formulario");
+            mostrarToast("Corrige los errores antes de enviar el formulario", "danger");
         }
     });
 }
+

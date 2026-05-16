@@ -12,9 +12,15 @@ try {
         case "registrarse":
             procesarRegistro();
             break;
-/*      
-        y el de coger cita
-*/
+        case "crearCita":
+            procesarCrearCita();
+            break;
+        case "modificarCita":
+            procesarModificarCita();
+            break;
+        case "cancelarCita":
+            procesarCancelarCita();
+            break;
     }
 
 } catch (Exception $e) {
@@ -51,6 +57,92 @@ function procesarRegistro() {
     session_start();
     $_SESSION["id_usuario"] = $id;
     $_SESSION["username"] = $username;
-    header("Location: ../index.php");
+    header("Location: ../misCitas.php");
     exit;
 }
+
+function procesarCrearCita() {
+    global $bd;
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $id_usuario = $_SESSION["id_usuario"];
+    $fecha = $_POST["fecha"] ?? null;
+    $hora = $_POST["hora"] ?? null;
+    $duracion = intval($_POST["duracion"] ?? 0);
+    $tipo = $_POST["tipo_cita"] ?? null;
+    $notas = $_POST["notas_cliente"] ?? "";
+
+    if ($fecha < date("Y-m-d")) {
+        lanzarToast("La fecha debe ser futura", "../misCitas.php");
+    }
+
+    if ($fecha === date("Y-m-d") && $hora <= date("H:i")) {
+        lanzarToast("La hora debe ser futura", "../misCitas.php");
+    }
+
+    if (!hora_disponible($fecha, $hora, $duracion)) {
+        $_SESSION["form_data"] = $_POST;
+        lanzarToast("Esa hora no está disponible", "../misCitas.php");
+    }
+
+    if (!insertar_cita($id_usuario, $fecha, $hora, $duracion, $tipo, $notas)) {
+        lanzarToast("No se ha podido crear la cita", "../misCitas.php");
+    }
+
+    lanzarToastVerde("Cita creada correctamente", "../misCitas.php");
+}
+
+function procesarModificarCita() {
+    global $bd;
+
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $id_usuario = $_SESSION["id_usuario"];
+    $id_cita = (int) $_POST["id_cita"];
+    $fecha = $_POST["fecha"] ?? null;
+    $hora = $_POST["hora"] ?? null;
+    $duracion = (int) ($_POST["duracion"] ?? 0);
+
+    if ($fecha < date("Y-m-d")) {
+        lanzarToast("La fecha debe ser futura", "../misCitas.php");
+    }
+
+    if ($fecha === date("Y-m-d") && $hora <= date("H:i")) {
+        lanzarToast("La hora debe ser futura", "../misCitas.php");
+    }
+
+    if (!hora_disponible($fecha, $hora, $duracion)) {
+        $_SESSION["form_data_modificar"] = $_POST;
+        lanzarToast("Esa hora no está disponible", "../misCitas.php");
+    }
+
+    if (!actualizar_cita($id_cita, $fecha, $hora, $duracion)) {
+        lanzarToast("No se ha podido modificar la cita", "../misCitas.php");
+    }
+
+    lanzarToastVerde("Cita modificada correctamente", "../misCitas.php");
+}
+
+function procesarCancelarCita() {
+    global $bd;
+
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $id_usuario = $_SESSION["id_usuario"];
+    $id_cita = (int) ($_POST["id_cita"] ?? 0);
+
+    if (!cancelar_cita($id_cita, $id_usuario)) {
+        lanzarToast("No se ha podido cancelar la cita", "../misCitas.php");
+    }
+
+    lanzarToastVerde("Cita cancelada correctamente", "../misCitas.php");
+}
+
+
+

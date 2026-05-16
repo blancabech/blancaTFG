@@ -79,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
     scroll-margin-top: 90px; /* ajusta según la altura del navbar */
 }
 
-input:focus {
+.form-control:focus {
     border-color: var(--color-secundario) !important;
     box-shadow: 0 0 0 0.25rem var(--color-secundario) !important;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
@@ -98,6 +98,16 @@ input:focus {
 .card-login {
     width: 80%;
     max-width: 400px;
+}
+.fondo-citas {
+    width: 100%;
+    height: 30vh;
+    background-image: url('/blancatfg/public/media/chica_espejo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(80%);
+    z-index: 1;
 }
 
 

@@ -20,5 +20,5 @@ $_SESSION["id_usuario"] = $usuario["id_usuario"];
 $_SESSION["username"] = $usuario["username"];
 $_SESSION["tipo_usuario"] = $usuario["tipo_usuario"];
 
-header("Location: ../index.php");
+header("Location: ../misCitas.php");
 exit;
