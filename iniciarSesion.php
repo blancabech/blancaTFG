@@ -7,24 +7,10 @@ $title="Iniciar Sesión";
 $links_js=["/blancaTFG/public/js/toast.js"];
 include "./includes/header.php";
 include "./includes/navbar.php";
-
-$toast = $_SESSION["toast_error"] ?? null;
-unset($_SESSION["toast_error"]);
+include "./includes/toast.php";
 ?>
 
 <body>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="toast" class="toast text-bg-danger" role="alert">
-        <div class="toast-body"></div>
-    </div>
-</div>
-<?php if ($toast): ?>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    mostrarToast("<?= $toast ?>");
-});
-</script>
-<?php endif; ?>
 
 <div class="container-fluid vh-100">
     <div class="row h-100">

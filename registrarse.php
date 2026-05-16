@@ -12,29 +12,11 @@ $links_js=[
 
 include "./includes/header.php";
 include "./includes/navbar.php";
-
-$toast = null;
-if (isset($_SESSION["toast_error"])) {
-    $toast = $_SESSION["toast_error"];
-    unset($_SESSION["toast_error"]);
-}
+include "./includes/toast.php";
 ?>
 
 <body>
 <div class="contenido">
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="toast" class="toast text-bg-danger" role="alert">
-        <div class="toast-body"></div>
-    </div>
-</div>
-
-<?php if ($toast): ?>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    mostrarToast("<?= $toast ?>");
-});
-</script>
-<?php endif; ?>
 
     <h1 class="text-center text-primario mt-4 mb-4">Registrarse</h1>
     <div class="card shadow px-4 py-4" style="width: 100%;">
@@ -60,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <div class="mb-3">
                         <label class="text-fuerte form-label">Fecha de nacimiento</label>
-                        <input type="text" class="form-control validar-fecha" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="aaaa-mm-dd" required>
+                        <input type="text" class="form-control validar-nacimiento" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="aaaa-mm-dd" required>
                         <small class="texto-error text-danger d-none"></small>
                     </div>
                 </div>
