@@ -20,7 +20,7 @@ include "./includes/toast.php";
         </div>
         <!-- Formulario derecha -->
         <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center p-0">
-            <h2 class="text-center text-primario mt-4 mb-4">Iniciar sesión</h2>    
+            <h1 class="text-center text-primario mt-4 mb-4">Iniciar sesión</h1>    
             <div class="card shadow card-login p-4">
                 <form action="/blancaTFG/auth/login.php" method="POST">
                     <div class="mb-3">
@@ -32,7 +32,7 @@ include "./includes/toast.php";
                         <input type="password" class="form-control" name="password" required>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn bg-complementario-fuerte text-claro mt-4 py-2 px-4">Entrar</button>
+                        <button type="submit" class="btn bg-acento text-primario mt-4 py-2 px-4">Entrar</button>
                     </div>
                 </form>
             </div>

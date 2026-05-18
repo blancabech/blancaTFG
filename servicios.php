@@ -70,7 +70,7 @@ include "./includes/navbar.php";
     </div>
 </section>
 
-<h2 class="text-center mt-4 mb-4 text-primario">Tarifas</h2>
+<h2 id="Tarifas" class="text-center mt-4 mb-4 text-primario">Tarifas</h2>
 
 <p class="text-center text-fuerte ms-4 me-4 mb-4">
     Todas las sesiones se adaptan a tus necesidades y al estado de tu articulación. 
@@ -99,9 +99,15 @@ include "./includes/navbar.php";
 </section>
 
 <div class="text-center mt-4 mb-5">
-  <a href="#" class="btn btn-lg bg-acento text-primario m-4">
-    Regístrate para reservar tu cita
-  </a>
+    <?php if (!isset($_SESSION['id_usuario'])): ?>
+        <a href="/blancaTFG/registrarse.php" class="btn btn-lg bg-acento text-primario m-4">
+            Regístrate para reservar tu cita
+        </a>
+    <?php elseif ($_SESSION['tipo_usuario'] == 0): ?>
+        <a href="/blancaTFG/misCitas.php" class="btn btn-lg bg-acento text-primario m-4">
+            Reserva tu cita
+        </a>
+    <?php endif; ?>
 </div>
 
 </div>

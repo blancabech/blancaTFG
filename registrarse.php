@@ -71,7 +71,7 @@ include "./includes/toast.php";
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn bg-complementario-fuerte text-claro mt-4 py-2 px-4">Registrarse</button>
+                <button type="submit" class="btn bg-acento text-primario mt-4 py-2 px-4">Registrarse</button>
             </div>
         </form>
         <script>

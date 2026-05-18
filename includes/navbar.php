@@ -18,6 +18,7 @@
                     <ul class="dropdown-menu"> 
                         <li><a class="dropdown-item" href="/blancaTFG/servicios.php">ATM y dolor orofacial</a></li>
                         <li><a class="dropdown-item" href="/blancaTFG/servicios.php#Bruxismo">Bruxismo</a></li>
+                        <li><a class="dropdown-item" href="/blancaTFG/servicios.php#Tarifas">Tarifas</a></li>
                     </ul> 
                 </li>
                 <li class="nav-item">

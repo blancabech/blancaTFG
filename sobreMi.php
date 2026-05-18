@@ -14,7 +14,7 @@ include "./includes/navbar.php";
 
     <h1 class="text-center text-primario mt-4 mb-4">Sobre mí</h1>
 
-    <section class="d-flex justify-content-center gap-4 flex-wrap">
+    <section class="d-flex justify-content-center gap-4 flex-wrap align-items-start contenedorInfo">
         <div class="elemeto1">
             <p class="text-fuerte ms-4 me-4">
                 Soy María García Martínez, fisioterapeuta especializada en la articulación temporomandibular (ATM) 

@@ -58,6 +58,19 @@ para que no solo mejores en consulta, sino que también aprendas a gestionar tu 
     Regístrate para acceder al sistema de citas y elegir entre valoración inicial o sesiones de seguimiento.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+
+<div class="text-center mt-0 mb-1">
+    <?php if (!isset($_SESSION['id_usuario'])): ?>
+        <a href="/blancaTFG/registrarse.php" class="btn btn-lg bg-acento text-primario m-4">
+            Regístrate para reservar tu cita
+        </a>
+    <?php elseif ($_SESSION['tipo_usuario'] == 0): ?>
+        <a href="/blancaTFG/misCitas.php" class="btn btn-lg bg-acento text-primario m-4">
+            Reserva tu cita
+        </a>
+    <?php endif; ?>
+</div>
+
 <h2 class="text-center mt-3 mb-4 text-primario">Contacto</h2>
 <section class="d-flex justify-content-center gap-4 flex-wrap align-items-start contenedorInfo">
     <div class="elemeto1">
