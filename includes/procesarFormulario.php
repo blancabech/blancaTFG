@@ -21,6 +21,9 @@ try {
         case "cancelarCita":
             procesarCancelarCita();
             break;
+        case "guardarNotasAdmin":
+            procesarGuardarNotasAdmin();
+            break;
     }
 
 } catch (Exception $e) {
@@ -144,5 +147,27 @@ function procesarCancelarCita() {
     lanzarToastVerde("Cita cancelada correctamente", "../misCitas.php");
 }
 
+function procesarGuardarNotasAdmin() {
+    $id_cita = $_POST["id_cita"];
+    $notas = $_POST["notas_admin"];
+    $modo = $_POST["modo"];
+    $fecha = $_POST["fecha"];
+    $usuario = $_POST["usuario"];
 
+    // Construir parámetros GET para volver al mismo estado
+    $parametros = "?modo=$modo";
 
+    if ($modo === "dia") {
+        $parametros .= "&fecha=$fecha";
+    }
+
+    if ($modo === "usuario") {
+        $parametros .= "&usuario=$usuario";
+    }
+
+    if (guardar_notas_admin($id_cita, $notas)) {
+        lanzarToastVerde("Notas guardadas correctamente", "../administrador.php$parametros");
+    } else {
+        lanzarToast("Error al guardar las notas", "../administrador.php$parametros");
+    }
+}

@@ -131,3 +131,67 @@ function cancelar_cita($id_cita) {
 
     return mysqli_query($bd, $sql);
 }
+
+function obtener_citas_dia($fecha) {
+    global $bd;
+
+    $sql = "SELECT c.*, u.username, u.email
+            FROM cita c
+            JOIN usuario u ON c.id_usuario = u.id_usuario
+            WHERE c.fecha = '$fecha'
+            ORDER BY c.hora ASC";
+
+    $res = mysqli_query($bd, $sql);
+
+    $citas = [];
+    while ($fila = mysqli_fetch_assoc($res)) {
+        $citas[] = $fila;
+    }
+
+    return $citas;
+}
+
+function obtener_todos_los_usuarios() {
+    global $bd;
+
+    $sql = "SELECT id_usuario, username, email FROM usuario ORDER BY username ASC";
+    $res = mysqli_query($bd, $sql);
+
+    $usuarios = [];
+    while ($fila = mysqli_fetch_assoc($res)) {
+        $usuarios[] = $fila;
+    }
+
+    return $usuarios;
+}
+
+function obtener_citas_usuario($id_usuario) {
+    global $bd;
+
+    $sql = "SELECT c.*, u.username, u.email
+            FROM cita c
+            JOIN usuario u ON c.id_usuario = u.id_usuario
+            WHERE c.id_usuario = $id_usuario
+            ORDER BY c.fecha ASC, c.hora ASC";
+
+    $res = mysqli_query($bd, $sql);
+
+    $citas = [];
+    while ($fila = mysqli_fetch_assoc($res)) {
+        $citas[] = $fila;
+    }
+
+    return $citas;
+}
+
+function guardar_notas_admin($id_cita, $notas) {
+    global $bd;
+
+    $notas = mysqli_real_escape_string($bd, $notas);
+
+    $sql = "UPDATE cita 
+            SET notas_admin = '$notas'
+            WHERE id_cita = $id_cita";
+
+    return mysqli_query($bd, $sql);
+}

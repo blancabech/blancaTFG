@@ -9,7 +9,7 @@
             <li class="nav-item"><a href="#" class="text-secundario nav-link px-2 text-body-secondary">Registrarse</a></li>
         </ul>
             <p class="text-secundario text-center text-body-secondary">© 2026 ATM Sin Presion</p>
-            <p class="text-secundario text-center text-body-secondary">Diseño de Blanca Beuste</p>
+            <p class="text-secundario text-center text-body-secondary">Diseño y desarrollo de Blanca Beuste</p>
      </footer>
  </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

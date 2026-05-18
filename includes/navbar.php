@@ -48,7 +48,7 @@
                         Mis citas
                     </a>
                 <?php elseif ($_SESSION['tipo_usuario'] == 1): ?> <!-- Admin -->
-                    <a href="/blancaTFG/administrador.php" class="btn btn-warning text-dark me-3 py-2">
+                    <a href="/blancaTFG/administrador.php" class="btn bg-acento text-primario me-3 py-2">
                         Panel Admin
                     </a>
                 <?php endif; ?>

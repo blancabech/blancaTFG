@@ -20,5 +20,10 @@ $_SESSION["id_usuario"] = $usuario["id_usuario"];
 $_SESSION["username"] = $usuario["username"];
 $_SESSION["tipo_usuario"] = $usuario["tipo_usuario"];
 
+if ($_SESSION["tipo_usuario"] == 1) {
+    header("Location: ../administrador.php");
+    exit;
+}
+
 header("Location: ../misCitas.php");
 exit;
