@@ -55,6 +55,12 @@ function validar_login($username, $password) {
     return false;
 }
 
+function eliminar_citas_usuario($id) {
+    global $bd;
+    $sql = "DELETE FROM cita WHERE id_usuario = $id";
+    return mysqli_query($bd, $sql);
+}
+
 function eliminar_usuario($id) {
     global $bd;
     $sql = "DELETE FROM usuario WHERE id_usuario = $id";
@@ -112,22 +118,22 @@ function obtener_proximas_citas_usuario($id_usuario) {
     return $citas;
 }
 
-function actualizar_cita($id_cita, $fecha, $hora, $duracion) {
+function actualizar_cita($id_cita, $fecha, $hora, $duracion, $id_usuario) {
     global $bd;
 
     $sql = "UPDATE cita 
             SET fecha = '$fecha', hora = '$hora', duracion = $duracion
-            WHERE id_cita = $id_cita";
+            WHERE id_cita = $id_cita AND id_usuario = $id_usuario";
 
     return mysqli_query($bd, $sql);
 }
 
-function cancelar_cita($id_cita) {
+function cancelar_cita($id_cita, $id_usuario) {
     global $bd;
 
     $sql = "UPDATE cita 
             SET estado = 'cancelada'
-            WHERE id_cita = $id_cita";
+            WHERE id_cita = $id_cita AND $id_usuario = $id_usuario";
 
     return mysqli_query($bd, $sql);
 }
@@ -138,7 +144,7 @@ function obtener_citas_dia($fecha) {
     $sql = "SELECT c.*, u.username, u.email
             FROM cita c
             JOIN usuario u ON c.id_usuario = u.id_usuario
-            WHERE c.fecha = '$fecha'
+            WHERE c.fecha = '$fecha' AND c.estado = 'reservada'
             ORDER BY c.hora ASC";
 
     $res = mysqli_query($bd, $sql);
@@ -171,7 +177,7 @@ function obtener_citas_usuario($id_usuario) {
     $sql = "SELECT c.*, u.username, u.email
             FROM cita c
             JOIN usuario u ON c.id_usuario = u.id_usuario
-            WHERE c.id_usuario = $id_usuario
+            WHERE c.id_usuario = $id_usuario AND c.estado = 'reservada'
             ORDER BY c.fecha ASC, c.hora ASC";
 
     $res = mysqli_query($bd, $sql);

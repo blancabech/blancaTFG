@@ -2,6 +2,10 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+if (isset($_SESSION["id_usuario"])) {
+    header("Location: /blancaTFG/index.php");
+    exit();
+}
 
 $title="Registrarse";
 $links_css=["https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker.min.css"];

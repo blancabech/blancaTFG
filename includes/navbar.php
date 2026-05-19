@@ -67,7 +67,8 @@
                         </li>
                         <?php if ($_SESSION['tipo_usuario'] == 0): ?>
                             <li>
-                                <a class="dropdown-item text-danger" href="/blancaTFG/auth/eliminarCuenta.php">
+                                <a class="dropdown-item text-danger" href="/blancaTFG/auth/eliminarCuenta.php"
+                                   onclick="return confirm('¿Estás seguro de que quieres eliminar tu cuenta?')">
                                     Eliminar cuenta
                                 </a>
                             </li>

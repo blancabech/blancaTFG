@@ -1,6 +1,7 @@
 <?php
 require_once "../dao/dao.php";
 require_once "../includes/utils.php";
+require_once "../includes/validaciones.php";
 
 try {
     if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -41,6 +42,49 @@ function procesarRegistro() {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $telefono = $_POST["telefono"];
+    $fechaNac = $_POST["fecha_nacimiento"];
+    $passwordRaw = $_POST["password"];
+
+    $error = validar_nombres($nombre);
+    if ($error !== null) {
+        lanzarToast("Nombre: " . $error, "../registrarse.php");
+    }
+
+    $error = validar_nombres($apellido1);
+    if ($error !== null) {
+        lanzarToast("Primer apellido: " . $error, "../registrarse.php");
+    }
+
+    $error = validar_nombres($apellido2);
+    if ($error !== null) {
+        lanzarToast("Segundo apellido: " . $error, "../registrarse.php");
+    }
+
+    $error = validar_username($username);
+    if ($error !== null) {
+        lanzarToast("Usuario: " . $error, "../registrarse.php");
+    }
+
+    $error = validar_nacimiento($fechaNac);
+    if ($error !== null) {
+        lanzarToast("Fecha de nacimiento: " . $error, "../registrarse.php");
+    }
+
+    $error = validar_correo($email);
+    if ($error !== null) {
+        lanzarToast("Correo: " . $error, "../registrarse.php");
+    }
+
+    $error = validar_telefono($telefono);
+    if ($error !== null) {
+        lanzarToast("Teléfono: " . $error, "../registrarse.php");
+    }
+
+    $error = validar_contrasenia($passwordRaw);
+    if ($error !== null) {
+        lanzarToast("Contraseña: " . $error, "../registrarse.php");
+    }
+
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
     if (existe_email($email)) {
@@ -60,6 +104,7 @@ function procesarRegistro() {
     session_start();
     $_SESSION["id_usuario"] = $id;
     $_SESSION["username"] = $username;
+    $_SESSION["tipo_usuario"] = 0;
     header("Location: ../misCitas.php");
     exit;
 }
@@ -68,6 +113,10 @@ function procesarCrearCita() {
     global $bd;
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
+    }
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: ../index.php");
+        exit();
     }
 
     $id_usuario = $_SESSION["id_usuario"];
@@ -103,6 +152,10 @@ function procesarModificarCita() {
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: ../index.php");
+        exit();
+    }
 
     $id_usuario = $_SESSION["id_usuario"];
     $id_cita = (int) $_POST["id_cita"];
@@ -123,7 +176,7 @@ function procesarModificarCita() {
         lanzarToast("Esa hora no está disponible", "../misCitas.php");
     }
 
-    if (!actualizar_cita($id_cita, $fecha, $hora, $duracion)) {
+    if (!actualizar_cita($id_cita, $fecha, $hora, $duracion, $id_usuario)) {
         lanzarToast("No se ha podido modificar la cita", "../misCitas.php");
     }
 
@@ -135,6 +188,10 @@ function procesarCancelarCita() {
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
+    }
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: ../index.php");
+        exit();
     }
 
     $id_usuario = $_SESSION["id_usuario"];
@@ -148,6 +205,15 @@ function procesarCancelarCita() {
 }
 
 function procesarGuardarNotasAdmin() {
+    
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 1) {
+        header("Location: ../index.php");
+        exit();
+    }
+
     $id_cita = $_POST["id_cita"];
     $notas = $_POST["notas_admin"];
     $modo = $_POST["modo"];

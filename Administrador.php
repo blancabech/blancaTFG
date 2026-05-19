@@ -2,6 +2,10 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 1) {
+    header("Location: /blancaTFG/index.php");
+    exit();
+}
 
 $title="Administrador";
 $links_js=["/blancaTFG/public/js/toast.js"];
