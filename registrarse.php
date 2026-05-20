@@ -74,6 +74,12 @@ include "./includes/toast.php";
                     </div>
                 </div>
             </div>
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="proteccion_datos" name="proteccion_datos" required>
+                <label class="form-check-label text-fuerte" for="proteccion_datos">
+                    Autorizo el uso de mis datos únicamente para la gestión del centro de fisioterapia.
+                </label>
+            </div>
             <div class="text-center">
                 <button type="submit" class="btn bg-acento text-primario mt-4 py-2 px-4">Registrarse</button>
             </div>

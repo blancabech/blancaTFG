@@ -1,5 +1,6 @@
 function validarCampo(input) {
     if (input.type === "radio") return;
+    if (input.type === "checkbox") return;
     const valor = input.value.trim();
     const error = input.nextElementSibling;
 
@@ -159,8 +160,10 @@ function bloquearSubmitSiErrores(formId) {
             }
         });
         document.querySelectorAll(`#${formId} [required]`).forEach(input => {
-            if (input.value.trim() === "") {
-                hayVacios = true;
+            if (input.type === "checkbox") {
+                if (!input.checked) hayVacios = true;
+            } else {
+                if (input.value.trim() === "") hayVacios = true;
             }
         });
         if (hayVacios) {
