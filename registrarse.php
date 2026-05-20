@@ -121,6 +121,32 @@ $(function() {
 });
 
 bloquearSubmitSiErrores("form-registro");
+
+let usernameEditadoManualmente = false;
+
+const inputNombre   = document.querySelector("input[name='nombre']");
+const inputApellido = document.querySelector("input[name='primer_apellido']");
+const inputUsername = document.querySelector("input[name='username']");
+
+inputUsername.addEventListener("input", function() {
+    usernameEditadoManualmente = true;
+});
+
+function generarUsername() {
+    if (usernameEditadoManualmente) return;
+    const nombre   = inputNombre.value.trim();
+    const apellido = inputApellido.value.trim();
+    if (!nombre && !apellido) return;
+    inputUsername.value = (nombre + "_" + apellido)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/ñ/g, "n")
+        .replace(/[^a-z0-9_-]/g, "");
+}
+
+inputNombre.addEventListener("input", generarUsername);
+inputApellido.addEventListener("input", generarUsername);
 </script>
 
 </body>
