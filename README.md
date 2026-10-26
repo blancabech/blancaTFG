@@ -4,6 +4,10 @@ Aplicación web para una clínica de fisioterapia especializada en ATM (articula
 
 Permite a los pacientes registrarse y gestionar sus citas online, y a la fisioterapeuta consulta su agenda desde un panel propio.
 
+> ℹ️ La aplicación usa PHP y MySQL, así que no se puede ver directamente desde GitHub. Más abajo tienes capturas de las funcionalidades principales y las instrucciones para ejecutarla en local.
+
+![Página de inicio](docs/index.png)
+
 ---
 
 ## Tecnologías
@@ -32,6 +36,32 @@ Permite a los pacientes registrarse y gestionar sus citas online, y a la fisiote
 
 ---
 
+## Capturas
+
+### Zona pública
+
+| Página de inicio | Registro con validación de errores |
+|:---:|:---:|
+| ![Página de inicio](docs/index.png) | ![Formulario de registro con errores](docs/registrarse.png) |
+
+### Área de pacientes
+
+| Mis citas | Nueva cita |
+|:---:|:---:|
+| ![Mis citas](docs/misCitas.png) | ![Formulario de nueva cita](docs/nuevaCita.png) |
+
+### Panel de administración
+
+| Citas por día, con notas | Citas por paciente |
+|:---:|:---:|
+| ![Panel de administración por día](docs/adminPorDia.png) | ![Panel de administración por usuario](docs/adminPorUsuario.png) |
+
+### Mapa de navegación
+
+![Mapa de navegación](docs/mapaNav.png)
+
+---
+
 ## Estructura de carpetas
 
 ```
@@ -54,4 +84,3 @@ Permite a los pacientes registrarse y gestionar sus citas online, y a la fisiote
    ```
 3. Importar el archivo SQL de la base de datos en phpMyAdmin (base de datos: `atmsintension`).
 4. Acceder en el navegador a `http://localhost/blancaTFG/`.
-
